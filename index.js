@@ -16,12 +16,12 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 // index route
-app.get('/' , (req, res) => {
+app.get(`/` , (req, res) => {
     return res.status(StatusCodes.OK).json({ status: true , msg: `crud user api`})
 })
 
 // api route
-app.use('/api/user' , require('./route/userRouter'))
+app.use(`/api/user` , require('./route/userRouter'))
 
 // default route
 app.all(`*` , async (req, res) => {
