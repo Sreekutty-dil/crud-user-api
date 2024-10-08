@@ -29,6 +29,11 @@ app.all(`*` , async (req, res) => {
 })
 
 app.listen(PORT,() => {
-    connectDb()
+    if(process.env.MODE === "development") {
+        connectDb(process.env.MONGO_DEV)
+    }
+    if(process.env.MODE === "production") {
+        connectDb(process.env.MONGO_PROD)
+    }
     console.log(`server is connected running @ http://localhost:${PORT}`)  
 })

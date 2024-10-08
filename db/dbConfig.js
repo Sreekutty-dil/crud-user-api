@@ -1,9 +1,15 @@
 const mongoose = require('mongoose');
 
-const connectDb = async () => {
-    return mongoose.connect(process.env.MONGO_DEV)
+const connectDb = async (url) => {
+    return await mongoose.connect(url)
     .then(res => {
-         console.log(`Mongodb connected successfully`);
+        if(process.env.MODE === "development") {
+            console.log(`local Mongodb connected successfully`);
+        }
+        if(process.env.MODE === "production") {
+            console.log(`cloud Mongodb connected successfully`);
+        }
+        
     }).catch(err => console.log(err))
 }
 
